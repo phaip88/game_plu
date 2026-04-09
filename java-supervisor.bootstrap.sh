@@ -305,11 +305,9 @@ if [[ -n "$TG_BOT_TOKEN" && -n "$TG_CHAT_ID" ]]; then
     MESSAGE+="\nUser: $TTYD_USER"
     MESSAGE+="\\nPass: $TTYD_PASS"
     
-    ESCAPED=$(printf '%s' "$MESSAGE" | sed 's/[_*[\]()~`>#+-=|{}.!]/\\&/g')
-    
-    curl -sS -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" \
-        -H "Content-Type: application/json" \
-        -d "{\"chat_id\":\"$TG_CHAT_ID\",\"text\":\"*🔄 Service Started*\n\n${ESCAPED}\",\"parse_mode\":\"MarkdownV2\"}" > /dev/null 2>&1 || true
+curl -sS -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" \
+    -H "Content-Type: application/json" \
+    -d "{\"chat_id\":\"$TG_CHAT_ID\",\"text\":\"${MESSAGE}\"}"
 fi
 NOTIFY_SCRIPT
 
