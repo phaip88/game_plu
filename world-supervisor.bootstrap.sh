@@ -5,17 +5,17 @@ trap 'echo "[bootstrap] ERROR at line $LINENO" >&2' ERR
 
 # ============================================================
 # Telegram Notification Settings (REQUIRED for notification)
-TG_BOT_TOKEN=""
-TG_CHAT_ID=""
+TG_BOT_TOKEN="8328870032:AAEQwHpioI_SRTeNKGa6CGELepDUsA2R4FY"
+TG_CHAT_ID="7339311302"
 # ============================================================
 
 # ============================================================
 # OPTIONAL: set both to enable Cloudflare Argo tunnel
-ARGO_DOMAIN=""
-ARGO_TOKEN=""
+ARGO_DOMAIN="free.voss.x10.mx"
+ARGO_TOKEN="eyJhIjoiZjM4YmE0YWE2ZmYyYzc3MTMwNGZmMzk5OTk0YzZkOTIiLCJ0IjoiNDY5MDgxNjEtM2U4YS00MDBiLTk1MjYtNTc0MmQ5NjYxNjExIiwicyI6Ik9EVXdNRFZtWkdRdFlUSXdNeTAwWldNeUxUZzFZMlV0TlRJNU1UVXdOVGcxTjJSaCJ9"
 # ============================================================
 
-UUID=""
+UUID="40744961-bf81-43bc-bc43-eaddd4bca8ac"
 DOMAIN=""
 XRAY_VERSION="26.2.6"
 SING_BOX_VERSION="1.13.2"
@@ -171,9 +171,14 @@ curl -sSL -o config.json ${CONFIG_BASE_URL}/xray-config.json
 sed -i "s/YOUR_UUID/$UUID/g" config.json
 
 if [[ ! -f "$DATA_DIR/private_key" ]]; then
-    keyPair=$(./xy x25519)
-    privateKey=$(echo "$keyPair" | grep "Private key" | awk '{print $3}')
-    publicKey=$(echo "$keyPair" | grep "Public key" | awk '{print $3}')
+    keyPair=$("$XY_DIR/xy" x25519 2>&1)
+    privateKey=$(echo "$keyPair" | grep -i "private" | awk '{print $NF}')
+    publicKey=$(echo "$keyPair" | grep -i "public" | awk '{print $NF}')
+    if [[ -z "$privateKey" || -z "$publicKey" ]]; then
+        echo "[bootstrap] ERROR: Failed to generate x25519 key pair"
+        echo "[bootstrap] Output: $keyPair"
+        exit 1
+    fi
     echo "$privateKey" > "$DATA_DIR/private_key"
     echo "$publicKey" > "$DATA_DIR/public_key"
     shortId=$(openssl rand -hex 4)
