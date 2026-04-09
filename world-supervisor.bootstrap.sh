@@ -198,7 +198,7 @@ sed -i "s/YOUR_SHORT_ID/$shortId/g" config.json
 
 # Generate htpasswd for ttyd
 HTPASSWD_FILE="$DATA_DIR/htpasswd"
-echo "$TTYD_USER:$(openssl passwd -apr1 "$TTYD_PASS")" > "$HTPASSWD_FILE"
+TTYD_CREDENTIAL="$TTYD_USER:$TTYD_PASS"
 
 # install td
 TD_DIR="$WS_PLUGIN_DIR/td"
@@ -265,7 +265,7 @@ cat > "$TD_DIR/startup.sh" <<EOF
 #!/usr/bin/env sh
 
 export PATH="$TD_DIR:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-exec td -p $PORT_TTYD -c "$HTPASSWD_FILE" -W bash
+exec td -p $PORT_TTYD -c "$TTYD_CREDENTIAL" -W bash
 EOF
 
 cat > "$CF_DIR/startup.sh" <<EOF
