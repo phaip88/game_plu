@@ -171,9 +171,9 @@ curl -sSL -o config.json ${CONFIG_BASE_URL}/xray-config.json
 sed -i "s/YOUR_UUID/$UUID/g" config.json
 
 if [[ ! -f "$DATA_DIR/private_key" ]]; then
-    keyPair=$("$XY_DIR/xy" x25519 2>&1)
-    privateKey=$(echo "$keyPair" | grep -i "private" | awk '{print $NF}')
-    publicKey=$(echo "$keyPair" | grep -i "public" | awk '{print $NF}')
+    keyPair=$("$XY_DIR/xy" x25519 2>&1) || true
+    privateKey=$(echo "$keyPair" | grep -iE "private.*:" | sed 's/.*: *//' | tr -d ' \r\n')
+    publicKey=$(echo "$keyPair" | grep -iE "public.*:" | sed 's/.*: *//' | tr -d ' \r\n')
     if [[ -z "$privateKey" || -z "$publicKey" ]]; then
         echo "[bootstrap] ERROR: Failed to generate x25519 key pair"
         echo "[bootstrap] Output: $keyPair"
