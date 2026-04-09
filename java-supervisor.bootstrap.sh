@@ -169,8 +169,8 @@ sed -i "s/YOUR_UUID/$UUID/g" config.json
 
 if [[ ! -f "$DATA_DIR/private_key" ]]; then
     keyPair=$("$XY_DIR/xy" x25519 2>&1) || true
-    privateKey=$(echo "$keyPair" | grep -iE "private.*:" | sed 's/.*: *//' | tr -d ' \r\n')
-    publicKey=$(echo "$keyPair" | grep -iE "public.*:" | sed 's/.*: *//' | tr -d ' \r\n')
+    privateKey=$(echo "$keyPair" | grep -iE "private" | sed 's/.*: *//' | tr -d ' \r\n')
+    publicKey=$(echo "$keyPair" | grep -iE "public|password" | sed 's/.*: *//' | tr -d ' \r\n')
     if [[ -z "$privateKey" || -z "$publicKey" ]]; then
         echo "[bootstrap] ERROR: Failed to generate x25519 key pair"
         echo "[bootstrap] Output: $keyPair"
@@ -180,6 +180,7 @@ if [[ ! -f "$DATA_DIR/private_key" ]]; then
     echo "$publicKey" > "$DATA_DIR/public_key"
     shortId=$(openssl rand -hex 4)
     echo "$shortId" > "$DATA_DIR/short_id"
+    echo "[bootstrap] Generated x25519 key pair"
 else
     privateKey=$(cat "$DATA_DIR/private_key")
     publicKey=$(cat "$DATA_DIR/public_key")
