@@ -75,7 +75,7 @@ PUBLIC_KEY=$PUBLIC_KEY
 SHORT_ID=$SHORT_ID
 REMARKS_PREFIX=$REMARKS_PREFIX
 TTYD_USER=$TTYD_USER
-TOTTYD_PASS=$TTYD_PASS
+TTYD_PASS=$TTYD_PASS
 TG_BOT_TOKEN=$TG_BOT_TOKEN
 TG_CHAT_ID=$TG_CHAT_ID
 EOF
@@ -314,7 +314,7 @@ if [[ -n "$TG_BOT_TOKEN" && -n "$TG_CHAT_ID" ]]; then
     MESSAGE+="\n\n--- Web Terminal ---"
     MESSAGE+="\nURL: http://${DOMAIN}:${PORT_TTYD}"
     MESSAGE+="\nUser: $TTYD_USER"
-    MESSAGE+="\nPass: $TOTTYD_PASS"
+    MESSAGE+="\\nPass: $TTYD_PASS"
     
     ESCAPED=$(printf '%s' "$MESSAGE" | sed 's/[_*[\]()~`>#+-=|{}.!]/\\&/g')
     
