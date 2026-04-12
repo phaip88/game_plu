@@ -8,7 +8,7 @@
     {
       "type": "hysteria2",
       "listen": "::",
-      "listen_port": 4818,
+      "listen_port": 30451,
       "users": [
         {
           "password": "YOUR_UUID"
@@ -26,7 +26,7 @@
     {
       "type": "tuic",
       "listen": "::",
-      "listen_port": 11681,
+      "listen_port": 31849,
       "users": [
         {
           "uuid": "YOUR_UUID",
