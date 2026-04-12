@@ -11,11 +11,11 @@ TG_CHAT_ID="7339311302"
 
 # ============================================================
 # OPTIONAL: set both to enable Cloudflare Argo tunnel
-ARGO_DOMAIN="free.voss.x10.mx"
-ARGO_TOKEN="eyJhIjoiZjM4YmE0YWE2ZmYyYzc3MTMwNGZmMzk5OTk0YzZkOTIiLCJ0IjoiNDY5MDgxNjEtM2U4YS00MDBiLTk1MjYtNTc0MmQ5NjYxNjExIiwicyI6Ik9EVXdNRFZtWkdRdFlUSXdNeTAwWldNeUxUZzFZMlV0TlRJNU1UVXdOVGcxTjJSaCJ9"
+ARGO_DOMAIN="rus.gxg.elementfx.com"
+ARGO_TOKEN="eyJhIjoiZjM4YmE0YWE2ZmYyYzc3MTMwNGZmMzk5OTk0YzZkOTIiLCJ0IjoiODFhMTBiZTQtMGI3OC00Y2FhLWFiODEtODgxZGVkNDU2NWI5IiwicyI6IllUUmpNVE16WXpJdFpXUmlNaTAwTkdOaUxUaGhZekF0T1RWbE56Y3dNalUyTmpRMCJ9"
 # ============================================================
 
-UUID="40744961-bf81-43bc-bc43-eaddd4bca8ac"
+UUID="50069926-6111-4a56-8976-581cdedb950d"
 DOMAIN=""
 XRAY_VERSION="26.2.6"
 SING_BOX_VERSION="1.13.2"
@@ -27,9 +27,9 @@ TTYD_PASS="zhangm88"
 
 # Ports (sync with json config files)
 PORT_VLESS_WS=8080
-PORT_VLESS_REALITY=11681
-PORT_HYSTERIA2=4818
-PORT_TUIC=11681
+PORT_VLESS_REALITY=31849
+PORT_HYSTERIA2=30451
+PORT_TUIC=31849
 PORT_TTYD=3000
 
 # Config source (use local repo)
