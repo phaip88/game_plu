@@ -28,7 +28,7 @@
       }
     },
     {
-      "port": 11681,
+      "port": 31849,
       "protocol": "vless",
       "settings": {
         "clients": [
